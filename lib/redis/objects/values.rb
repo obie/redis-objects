@@ -40,6 +40,7 @@ class Redis
                 @#{name}.value
               end
               def #{name}=(value)
+                @#{name} ||= Redis::Value.new(redis_field_key(:#{name}), #{klass_name}.redis, #{klass_name}.redis_objects[:#{name}])
                 @#{name}.value = value
               end
             EndMethods
