@@ -3,7 +3,7 @@ class Redis
     module Serialize
       include Marshal
 
-      def to_redis(value, marshal=false)
+      def to_redis(value, marshal=true)
         return value unless options[:marshal] || marshal
         case value
         when String, Fixnum, Bignum, Float
@@ -13,7 +13,7 @@ class Redis
         end
       end
     
-      def from_redis(value, marshal=false)
+      def from_redis(value, marshal=true)
         return value unless options[:marshal] || marshal
         case value
         when Array
