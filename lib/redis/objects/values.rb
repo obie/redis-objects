@@ -14,7 +14,7 @@ class Redis
         # Define a new simple value.  It will function like a regular instance
         # method, so it can be used alongside ActiveRecord, DataMapper, etc.
         def value(name, options={})
-          @redis_objects[name.to_sym] = options.merge(:type => :value)
+          @redis_objects[name.to_sym] = options.merge(:type => :value, :marshal => true)
           klass_name = '::' + self.name
           if options[:global]
             instance_eval <<-EndMethods
