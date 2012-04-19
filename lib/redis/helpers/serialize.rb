@@ -21,7 +21,7 @@ class Redis
         when Hash
           value.inject({}) { |h, (k, v)| h[k] = from_redis(v); h }
         else
-          restore(value) rescue value
+          restore(value)
         end
       end
     end
