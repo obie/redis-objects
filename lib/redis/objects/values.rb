@@ -20,6 +20,7 @@ class Redis
             instance_eval <<-EndMethods
               def #{name}
                 @#{name} ||= Redis::Value.new(redis_field_key(:#{name}), #{klass_name}.redis, #{klass_name}.redis_objects[:#{name}])
+                @#{name}.value
               end
               def #{name}=(value)
                 #{name}.value = value
@@ -37,6 +38,7 @@ class Redis
             class_eval <<-EndMethods
               def #{name}
                 @#{name} ||= Redis::Value.new(redis_field_key(:#{name}), #{klass_name}.redis, #{klass_name}.redis_objects[:#{name}])
+                @#{name}.value
               end
               def #{name}=(value)
                 #{name}.value = value
