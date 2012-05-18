@@ -82,11 +82,11 @@ class Redis
       # Set the Redis redis_prefix to use. Defaults to model_name
       def redis_prefix=(redis_prefix) @redis_prefix = redis_prefix end
       def redis_prefix(klass = self) #:nodoc:
-        @redis_prefix ||= klass.name.to_s.
-          sub(%r{(.*::)}, '').
-          gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
-          gsub(/([a-z\d])([A-Z])/,'\1_\2').
-          downcase
+        @redis_prefix ||= klass.name.underscore
+        #   sub(%r{(.*::)}, '').
+        #   gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        #   gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        #   downcase
       end
 
       def redis_field_key(name, id=nil) #:nodoc:
